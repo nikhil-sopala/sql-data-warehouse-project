@@ -19,6 +19,7 @@ The Bronze Layer is the first layer of the data warehouse. It stores raw data fr
 The project contains data from two source systems:
 
  **CRM** – Customer, product, and sales data
+ 
 **ERP** – Customer, location, and product category data
 
 ### Bronze Tables
