@@ -44,16 +44,8 @@ The procedure:
 * Skips the header row during data loading.
 * Tracks the loading time for each table.
 * Tracks the total Bronze layer loading time.
-* Includes basic error handling using `TRY...CATCH`.
+* Includes basic error handling using `TRY...CATCH`
 
-### Data Flow
-CRM Source Data ──┐
-                  ├──> Bronze Layer
-ERP Source Data ──┘
-                       ↓
-                  Silver Layer
-                       ↓
-                   Gold Layer 
 
 ## Technologies Used
 
