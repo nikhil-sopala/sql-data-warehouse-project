@@ -55,3 +55,27 @@ The procedure:
 * Stored Procedures
 * BULK INSERT
 * SQL Server Management Studio (SSMS)
+
+## Silver Layer
+
+The Silver Layer is responsible for cleaning, standardizing, and transforming the raw data from the Bronze Layer before it is used for further analysis.
+
+### Silver Layer Implementation
+
+* Created Silver layer tables for CRM and ERP data.
+* Cleaned and standardized the data loaded from the Bronze Layer.
+* Handled data quality issues and inconsistent values.
+* Applied transformations to prepare the data for analysis.
+* Created stored procedures to load and transform data into the Silver tables.
+* Used SQL queries and transformations to integrate data from different source tables.
+
+### Data Flow
+
+```text
+Bronze Layer
+     ↓
+Cleaning & Transformation
+     ↓
+Silver Layer
+
+
