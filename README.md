@@ -159,7 +159,7 @@ To turn my knowledge into practical skills, I built this end-to-end data warehou
 Let's connect! Feel free to reach out to me:
 
 * 💼 **LinkedIn:** [linkedin.com/in/sopalanikhil12345](https://linkedin.com/in/sopalanikhil12345)
-* 📧 **Email:** linkedin.sopalanikhil40@gmail.com
+* 📧 **Email:** sopalanikhil40@gmail.com
 
 ---
 
