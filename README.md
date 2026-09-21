@@ -1,14 +1,22 @@
-# sql-data-warehouse-project
-Building modern data warehouse with SQL Server,Icluding ETL process,data modelling  and analytics
-
-
 # Data Warehouse Project
 
 ## Overview
 
-This project focuses on building a data warehouse using SQL Server. It demonstrates how raw data from different source systems can be loaded and organized into a structured data warehouse for analytical purposes.
+This project demonstrates the development of a data warehouse using **SQL Server** and **T-SQL**.
 
-The project follows a layered architecture consisting of Bronze, Silver, and Gold layers.
+The project integrates data from CRM and ERP source systems and transforms the data through a layered data warehouse architecture consisting of **Bronze, Silver, and Gold layers**.
+
+The Gold layer follows a **Star Schema** design to provide business-ready data for analytical purposes.
+
+## Architecture
+
+The data warehouse follows a three-layer architecture:
+
+- **Bronze Layer** – Stores raw data from the source systems.
+- **Silver Layer** – Cleans, standardizes, and transforms the raw data.
+- **Gold Layer** – Contains business-ready data organized into a Star Schema.
+
+Detailed architecture, data flow, and data model diagrams are available in the `docs/` folder.
 
 ## Bronze Layer
 
@@ -18,64 +26,122 @@ The Bronze Layer is the first layer of the data warehouse. It stores raw data fr
 
 The project contains data from two source systems:
 
- **CRM** – Customer, product, and sales data
- 
-**ERP** – Customer, location, and product category data
+- **CRM** – Customer, product, and sales data
+- **ERP** – Customer, location, and product category data
 
 ### Bronze Tables
 
-The Bronze layer contains the following tables:
-
-* bronze.crm_cust_info
-* bronze.crm_prd_info
-* bronze.crm_sales_details
-* bronze.erp_cust_az12
-* bronze.erp_loc_a101
-* bronze.erp_px_cat_g1v2
+- `bronze.crm_cust_info`
+- `bronze.crm_prd_info`
+- `bronze.crm_sales_details`
+- `bronze.erp_cust_az12`
+- `bronze.erp_loc_a101`
+- `bronze.erp_px_cat_g1v2`
 
 ### Data Loading
 
-A stored procedure named `bronze.load_bronze` is used to load the source data into the Bronze tables.
+The `bronze.load_bronze` stored procedure is used to load the source data into the Bronze tables.
 
 The procedure:
 
-* Truncates the Bronze tables before loading new data.
-* Uses 'BULK INSERT' to load the source data.
-* Loads data from both CRM and ERP sources.
-* Skips the header row during data loading.
-* Tracks the loading time for each table.
-* Tracks the total Bronze layer loading time.
-* Includes basic error handling using `TRY...CATCH`
-
-
-## Technologies Used
-
-* SQL Server
-* T-SQL
-* Stored Procedures
-* BULK INSERT
-* SQL Server Management Studio (SSMS)
+- Truncates the Bronze tables before loading.
+- Uses `BULK INSERT` to load source data.
+- Loads data from both CRM and ERP sources.
+- Skips source file headers.
+- Tracks individual table loading times.
+- Tracks the total Bronze layer loading time.
+- Includes basic error handling using `TRY...CATCH`.
 
 ## Silver Layer
 
-The Silver Layer is responsible for cleaning, standardizing, and transforming the raw data from the Bronze Layer before it is used for further analysis.
+The Silver Layer is responsible for cleaning, standardizing, and transforming the raw data from the Bronze Layer.
 
-### Silver Layer Implementation
+The Silver layer:
 
-* Created Silver layer tables for CRM and ERP data.
-* Cleaned and standardized the data loaded from the Bronze Layer.
-* Handled data quality issues and inconsistent values.
-* Applied transformations to prepare the data for analysis.
-* Created stored procedures to load and transform data into the Silver tables.
-* Used SQL queries and transformations to integrate data from different source tables.
+- Cleans and standardizes source data.
+- Handles data quality issues and inconsistent values.
+- Applies transformations to prepare the data for analysis.
+- Integrates data from different source tables.
+- Uses SQL transformations and stored procedures to load the Silver tables.
 
-### Data Flow
+## Gold Layer
+
+The Gold Layer contains business-ready data designed for analytical purposes.
+
+The Gold layer follows a **Star Schema** consisting of one central fact table and two dimension tables.
+
+### Fact Table
+
+- `gold.fact_sales` – Stores sales transactions and measurable sales information.
+
+### Dimension Tables
+
+- `gold.dim_customers` – Contains descriptive customer information.
+- `gold.dim_products` – Contains descriptive product information.
+
+The fact table connects to the dimension tables using surrogate keys:
+
+- `fact_sales.customer_key` → `dim_customers.customer_key`
+- `fact_sales.product_key` → `dim_products.product_key`
+
+This structure supports analytical queries, aggregations, and reporting.
+
+## Documentation
+
+Supporting project documentation is available in the `docs/` folder.
+
+It includes:
+
+- **Data Architecture** – Overall structure of the data warehouse.
+- **Data Flow** – How data moves through the Bronze, Silver, and Gold layers.
+- **Data Model** – Gold-layer Star Schema and table relationships.
+- **Data Catalog** – Description of tables, columns, keys, relationships, and their purpose.
+
+## Requirements
+
+### Software
+
+- **SQL Server** – Database engine used to create and run the data warehouse.
+- **SQL Server Management Studio (SSMS)** – Used to execute SQL scripts and manage the database.
+- **Git/GitHub** – Used for version control and project documentation.
+
+### Data
+
+The project requires the CRM and ERP source datasets used by the Bronze layer.
+
+The source files should be placed in the expected dataset directories before running the Bronze loading procedure.
+
+### Environment
+
+This project uses SQL Server-specific T-SQL features including:
+
+- `BULK INSERT`
+- Stored Procedures
+- `TRY...CATCH`
+- SQL Server schemas
+
+The Bronze loading procedure uses local file paths with `BULK INSERT`. These paths may need to be updated when running the project on another machine.
+
+## Project Structure
 
 ```text
-Bronze Layer
-     ↓
-Cleaning & Transformation
-     ↓
-Silver Layer
-
-
+data-warehouse-project/
+│
+├── datasets/
+│   ├── source_crm/
+│   └── source_erp/
+│
+├── docs/
+│   ├── data_architecture.png
+│   ├── data_flow.png
+│   ├── data_model.png
+│   └── data_catalog.md
+│
+├── scripts/
+│   ├── bronze/
+│   ├── silver/
+│   └── gold/
+│
+├── tests/
+│
+└── README.md
