@@ -146,3 +146,16 @@ data-warehouse-project/
 │
 └── README.md
 
+---
+
+## 🌟 About Me
+
+Hi there! I'm **Nikhil Sopala**, a recent Data Science graduate actively looking for a job opportunity in the data space. I am open to all data-related roles and deeply eager to learn and grow. 
+
+To turn my knowledge into practical skills, I built this end-to-end data warehouse project from scratch! 
+
+Let's connect! Feel free to reach out to me:
+
+* 💼 **LinkedIn:** [linkedin.com/in/sopalanikhil12345](https://linkedin.com/in/sopalanikhil12345)
+* 📧 **Email:** linkedin.sopalanikhil40@gmail.com
+
