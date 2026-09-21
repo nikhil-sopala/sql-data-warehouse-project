@@ -146,7 +146,7 @@ data-warehouse-project/
 ├── tests/
 │
 └── README.md
-'''
+```
 
 # Data Warehouse Project
 
@@ -160,6 +160,8 @@ Let's connect! Feel free to reach out to me:
 
 * 💼 **LinkedIn:** [linkedin.com/in/sopalanikhil12345](https://linkedin.com/in/sopalanikhil12345)
 * 📧 **Email:** linkedin.sopalanikhil40@gmail.com
+
+---
 
 ---
 
